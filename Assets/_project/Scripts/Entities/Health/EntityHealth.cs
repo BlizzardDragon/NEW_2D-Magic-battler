@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _project.Scripts.Entities.Health
 {
-    interface IEntityHealth
+    interface IHealth
     {
         int CurrentHealth { get; }
         bool IsDead { get; }
@@ -17,7 +17,7 @@ namespace _project.Scripts.Entities.Health
         void Heal(int heal);
     }
 
-    public class EntityHealth : IEntityHealth
+    public class EntityHealth : IHealth
     {
         private readonly int _maxHealth;
 
