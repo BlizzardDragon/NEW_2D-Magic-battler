@@ -1,0 +1,23 @@
+{
+  "name": "com.vampiresquid.common",
+  "version": "0.2.00",
+  "displayName": "VampireSquid Common",
+  "description": "VampireSquid Common",
+  "unity": "2022.3",
+  "unityRelease": "0b5",
+  "documentationUrl": "https://github.com/SLiGerr/VampireSquid.git",
+  "dependencies": {
+    "com.chenpipi.project-pin-board": "https://github.com/ichenpipi/unity-project-pin-board.git",
+    "com.bolttalking.animatorenumcodegen": "https://github.com/SLiGerr/Animator-Enum-Codegen.git",
+    "com.antonysze.custom-play-button": "https://github.com/antonysze/unity-custom-play-button.git",
+    "com.awixstudio.disableautocompiler": "https://github.com/AwixStudio/DisableAutoCompiler.git",
+    "com.marijnzwemmer.unity-toolbar-extender": "https://github.com/marijnz/unity-toolbar-extender.git",
+    "com.redbluegames.mulligan": "https://github.com/redbluegames/unity-mulligan-renamer.git",
+    "com.richtools.filebasedplayerprefs": "https://github.com/richardelms/FileBasedPlayerPrefs.git",
+    "com.codewriter.triinspector": "https://github.com/codewriter-packages/Tri-Inspector.git",
+    "com.unity.addressables": "https://github.com/needle-mirror/com.unity.addressables.git"
+  },
+  "author": {
+    "name": "VampireSquid"
+  }
+}
