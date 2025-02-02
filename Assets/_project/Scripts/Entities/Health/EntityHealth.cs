@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _project.Scripts.Entities.Health
 {
-    interface IHealth
+    public interface IHealth
     {
         int CurrentHealth { get; }
         bool IsDead { get; }

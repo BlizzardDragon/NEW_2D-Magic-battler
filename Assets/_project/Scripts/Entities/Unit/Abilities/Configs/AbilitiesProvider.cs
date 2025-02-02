@@ -8,6 +8,6 @@ namespace _project.Scripts.Entities.Unit.Abilities.Configs
         order = 0)]
     public class AbilitiesProvider : ScriptableObject
     {
-        [field: SerializeField] private AbilityConfig[] AbilityConfigs { get; set; }
+        [field: SerializeField] public AbilityConfig[] AbilityConfigs { get; private set; }
     }
 }
