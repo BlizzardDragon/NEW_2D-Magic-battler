@@ -1,4 +1,6 @@
+using _project.Scripts.Entities.Health;
 using _project.Scripts.Entities.Unit.Abilities.Configs;
+using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
@@ -20,6 +22,15 @@ namespace _project.Scripts.Entities.Unit.Abilities
             if (target.TryGetModule(out IDamageReceiver damageReceiver))
             {
                 damageReceiver.TakeDamage(_config.Damage);
+            }
+
+            if (target.TryGetModule(out IAbilityEffectsManager effectsManager))
+            {
+                if (target.TryGetModule(out IHealth health))
+                {
+                    var effect = new BurnEffect(health, _config.EffectConfig.Duration, _config.EffectConfig);
+                    effectsManager.AddEffect(effect);
+                }
             }
         }
     }

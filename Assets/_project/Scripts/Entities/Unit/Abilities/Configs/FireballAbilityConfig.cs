@@ -1,3 +1,4 @@
+using _project.Scripts.Entities.Unit.Abilities.Effects.Configs;
 using UnityEngine;
 
 namespace _project.Scripts.Entities.Unit.Abilities.Configs
@@ -9,7 +10,6 @@ namespace _project.Scripts.Entities.Unit.Abilities.Configs
     public class FireballAbilityConfig : AbilityConfig
     {
         [field: SerializeField] public int Damage { get; private set; }
-        [field: SerializeField] public int BurnDamage { get; private set; }
-        [field: SerializeField] public int Duration { get; private set; }
+        [field: SerializeField] public BurnEffectConfig EffectConfig { get; private set; }
     }
 }

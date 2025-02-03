@@ -16,5 +16,4 @@ MonoBehaviour:
   <Type>k__BackingField: 3
   <Cooldown>k__BackingField: 5
   <Damage>k__BackingField: 5
-  <BurnDamage>k__BackingField: 1
-  <Duration>k__BackingField: 5
+  <EffectConfig>k__BackingField: {fileID: 11400000, guid: e5e5a2a97425de64d9edd4b8d2830918, type: 2}
