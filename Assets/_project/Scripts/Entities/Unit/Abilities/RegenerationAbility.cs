@@ -1,34 +1,31 @@
 using _project.Scripts.Entities.Health;
 using _project.Scripts.Entities.Unit.Abilities.Configs;
+using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
     public class RegenerationAbility : Ability
     {
-        private readonly IHealth _health;
+        private readonly IEntity _entity;
+        private readonly IAbilityEffectsManager _effectsManager;
         private readonly RegenerationAbilityConfig _config;
 
-        private int _duration;
-
-        public RegenerationAbility(IHealth health, RegenerationAbilityConfig config) : base(config)
+        public RegenerationAbility(
+            IEntity entity, IAbilityEffectsManager effectsManager, RegenerationAbilityConfig config) : base(config)
         {
-            _health = health;
+            _entity = entity;
+            _effectsManager = effectsManager;
             _config = config;
         }
 
         protected override void OnUse()
         {
-            _duration = _config.Duration;
-        }
+            var effect = new RegenerationEffect(
+                _entity.GetModule<IHealth>(),
+                _config.EffectConfig.Duration,
+                _config.EffectConfig);
 
-        protected override void OnTickCooldown()
-        {
-            base.OnTickCooldown();
-
-            if (_duration <= 0) return;
-
-            _health.Heal(_config.RegenerationPower);
-            _duration--;
+            _effectsManager.AddEffect(effect);
         }
     }
 }
