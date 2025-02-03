@@ -15,5 +15,4 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: 1458237dbb3c6d54f8fe9d39c0175d00, type: 3}
   <Type>k__BackingField: 1
   <Cooldown>k__BackingField: 4
-  <BlockDamage>k__BackingField: 5
-  <Duration>k__BackingField: 2
+  <EffectConfig>k__BackingField: {fileID: 11400000, guid: 3c98b605cfd076c4ab81818abe9c8d1b, type: 2}

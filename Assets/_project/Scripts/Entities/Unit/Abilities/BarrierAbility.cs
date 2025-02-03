@@ -1,58 +1,28 @@
 using _project.Scripts.Entities.Health;
 using _project.Scripts.Entities.Unit.Abilities.Configs;
-using UnityEngine;
+using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
     public class BarrierAbility : Ability
     {
         private readonly IHealth _health;
+        private readonly IAbilityEffectsManager _effectsManager;
         private readonly BarrierAbilityConfig _config;
 
-        private int _duration;
-
-        public BarrierAbility(IHealth health, BarrierAbilityConfig config) : base(config)
+        public BarrierAbility(
+            IHealth health, IAbilityEffectsManager effectsManager, BarrierAbilityConfig config) : base(config)
         {
             _health = health;
+            _effectsManager = effectsManager;
             _config = config;
-        }
-
-        public int BarrierValue { get; private set; }
-
-        public void TakeDamage(int damage)
-        {
-            if (damage < 0)
-            {
-                Debug.LogError($"Negative value received ({damage})!");
-                return;
-            }
-
-            BarrierValue -= damage;
-
-            if (BarrierValue < 0)
-            {
-                _health.TakeDamage(Mathf.Abs(BarrierValue));
-                BarrierValue = 0;
-            }
         }
 
         protected override void OnUse()
         {
-            BarrierValue = _config.BlockDamage;
-            _duration = _config.Duration;
-        }
+            var effect = new BarrierEffect(_health, _config.EffectConfig.Duration, _config.EffectConfig);
 
-        protected override void OnTickCooldown()
-        {
-            base.OnTickCooldown();
-
-            if (_duration <= 0)
-            {
-                BarrierValue = 0;
-                return;
-            }
-
-            _duration--;
+            _effectsManager.AddEffect(effect);
         }
     }
 }

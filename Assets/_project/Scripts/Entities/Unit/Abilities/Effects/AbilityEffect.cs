@@ -11,7 +11,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
             Config = config;
         }
 
-        public int Duration { get; private set; }
+        public int Duration { get; protected set; }
         public AbilityEffectConfig Config { get; }
 
         public event Action<AbilityEffect> EffectEnded;

@@ -11,6 +11,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
         void Tick();
         void AddEffect(AbilityEffect effect);
         void RemoveEffect<T>() where T : AbilityEffect;
+        bool TryGetEffect<T>(out T effect) where T : AbilityEffect;
     }
 
     public class AbilityEffectsManager : IAbilityEffectsManager
@@ -40,6 +41,18 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
             {
                 effect.StopEffect();
             }
+        }
+
+        public bool TryGetEffect<T>(out T effect) where T : AbilityEffect
+        {
+            foreach (var currentEffect in _effects.OfType<T>())
+            {
+                effect = currentEffect;
+                return true;
+            }
+
+            effect = default;
+            return false;
         }
 
         private void OnEffectEnded(AbilityEffect effect)
