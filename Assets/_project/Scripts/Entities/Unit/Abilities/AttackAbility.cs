@@ -18,9 +18,9 @@ namespace _project.Scripts.Entities.Unit.Abilities
         {
             var target = _targetService.Target;
 
-            if (target.TryGetModule(out IHealth health))
+            if (target.TryGetModule(out IDamageReceiver damageReceiver))
             {
-                health.TakeDamage(_config.Damage);
+                damageReceiver.TakeDamage(_config.Damage);
             }
         }
     }

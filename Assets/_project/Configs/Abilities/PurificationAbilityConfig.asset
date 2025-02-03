@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99bed8781284f94a6b31fa34fb2fded, type: 3}
   m_Name: PurificationAbilityConfig
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 0f182fb2863faa7449e020de33b77e68, type: 3}
   <Type>k__BackingField: 4
   <Cooldown>k__BackingField: 5

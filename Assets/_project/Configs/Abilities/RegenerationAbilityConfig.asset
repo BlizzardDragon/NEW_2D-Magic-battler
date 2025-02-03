@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7d63b270b34fbfafd27b5f8a2ccf02, type: 3}
   m_Name: RegenerationAbilityConfig
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: c3aab7237df394c4890e647a4ae580ea, type: 3}
   <Type>k__BackingField: 2
   <Cooldown>k__BackingField: 5
   <RegenerationPower>k__BackingField: 2

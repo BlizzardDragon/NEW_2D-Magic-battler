@@ -46,12 +46,13 @@ namespace _project.Scripts.Entities.Unit.Abilities
         {
             base.OnTickCooldown();
 
-            _duration--;
-
             if (_duration <= 0)
             {
                 BarrierValue = 0;
+                return;
             }
+
+            _duration--;
         }
     }
 }

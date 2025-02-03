@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a07672a818641289450448c5dfee8c7, type: 3}
   m_Name: BarrierAbilityConfig
   m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: 1458237dbb3c6d54f8fe9d39c0175d00, type: 3}
   <Type>k__BackingField: 1
   <Cooldown>k__BackingField: 4
   <BlockDamage>k__BackingField: 5
