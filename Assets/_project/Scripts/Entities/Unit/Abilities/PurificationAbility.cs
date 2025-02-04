@@ -3,6 +3,7 @@ using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
+    [AbilityType(AbilityType.Purification)]
     public class PurificationAbility : Ability
     {
         private readonly IAbilityEffectsManager _effectsManager;

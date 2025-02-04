@@ -3,6 +3,7 @@ using _project.Scripts.Entities.Unit.Abilities.Configs;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
+    [AbilityType(AbilityType.Attack)]
     public class AttackAbility : Ability
     {
         private readonly IEntityTargetService _targetService;

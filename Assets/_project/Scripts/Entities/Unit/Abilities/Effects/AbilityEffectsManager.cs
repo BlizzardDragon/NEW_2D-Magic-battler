@@ -7,6 +7,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
     public interface IAbilityEffectsManager
     {
         event Action<AbilityEffect> EffectAdded;
+        event Action<AbilityEffect> EffectEnded;
 
         void Tick();
         void AddEffect(AbilityEffect effect);
@@ -19,6 +20,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
         private readonly List<AbilityEffect> _effects = new();
 
         public event Action<AbilityEffect> EffectAdded;
+        public event Action<AbilityEffect> EffectEnded;
 
         public void Tick()
         {
@@ -59,6 +61,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
         {
             effect.EffectEnded -= OnEffectEnded;
             _effects.Remove(effect);
+            EffectEnded?.Invoke(effect);
         }
     }
 }

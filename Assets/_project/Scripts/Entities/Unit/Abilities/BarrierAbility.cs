@@ -4,6 +4,7 @@ using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
+    [AbilityType(AbilityType.Barrier)]
     public class BarrierAbility : Ability
     {
         private readonly IHealth _health;

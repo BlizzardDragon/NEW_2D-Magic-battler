@@ -19,6 +19,6 @@ public class BootstrapRoot : CompositeRootBase
     public override async UniTask Initialize()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 }

@@ -4,6 +4,7 @@ using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
+    [AbilityType(AbilityType.Fireball)]
     public class FireballAbility : Ability
     {
         private readonly IEntityTargetService _targetService;

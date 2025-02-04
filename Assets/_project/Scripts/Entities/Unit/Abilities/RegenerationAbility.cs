@@ -4,6 +4,7 @@ using _project.Scripts.Entities.Unit.Abilities.Effects;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
+    [AbilityType(AbilityType.Regeneration)]
     public class RegenerationAbility : Ability
     {
         private readonly IHealth _health;
