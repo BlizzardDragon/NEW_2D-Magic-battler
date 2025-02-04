@@ -1,17 +1,32 @@
+using System.Collections.Generic;
+
 namespace _project.Scripts.Entities.Unit.Abilities
 {
     public interface IAbilityManager
     {
-        void UseAbility(int index);
+        IReadOnlyList<Ability> Abilities { get; }
+
+        void TickCooldown();
+        void AddAbility(Ability ability);
     }
-    
+
     public class AbilityManager : IAbilityManager
     {
-        
-        
-        public void UseAbility(int index)
+        private readonly List<Ability> _abilities = new();
+
+        public IReadOnlyList<Ability> Abilities => _abilities;
+
+        public void TickCooldown()
         {
-            throw new System.NotImplementedException();
+            foreach (var ability in _abilities)
+            {
+                ability.TickCooldown();
+            }
+        }
+
+        public void AddAbility(Ability ability)
+        {
+            _abilities.Add(ability);
         }
     }
 }
