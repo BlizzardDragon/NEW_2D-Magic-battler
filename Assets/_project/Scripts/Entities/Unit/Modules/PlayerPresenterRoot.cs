@@ -11,8 +11,11 @@ namespace _project.Scripts.Entities.Unit.Modules
         public override void Create(IEntity entity)
         {
             entity.AddModule<UnitMono>(_unitMono);
-            
+
+            CreateComposition<UnitTargetComposition>(entity);
             CreateComposition<PlayerAbilityComposition>(entity);
+            CreateComposition<UnitDamageReceiverComposition>(entity);
+
             CreateComposition<PlayerAbilityHUDComposition>(entity);
         }
     }

@@ -8,7 +8,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
     {
         private readonly IAbilityEffectsManager _effectsManager;
 
-        public PurificationAbility(AbilityConfig config, IAbilityEffectsManager effectsManager) : base(config)
+        public PurificationAbility(IAbilityEffectsManager effectsManager, AbilityConfig config) : base(config)
         {
             _effectsManager = effectsManager;
         }

@@ -13,7 +13,7 @@ namespace _project.Scripts.Entities.Unit.Compositions
         {
             var unitMono = entity.GetModule<UnitMono>();
             var abilityManager = entity.GetModule<IAbilityManager>();
-            var abilitiesHudViewport = GetGlobal<AbilitiesHUDViewport>();
+            var abilitiesHudViewport = Get<IAbilitiesHUDViewport>();
 
             _abilitiesViewFactory = new AbilitiesViewFactory(
                 abilitiesHudViewport, abilityManager, unitMono.AbilityButtonViewPrefab);
