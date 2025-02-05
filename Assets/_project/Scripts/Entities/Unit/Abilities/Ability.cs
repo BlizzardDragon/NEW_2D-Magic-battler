@@ -15,6 +15,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
         public AbilityConfig Config { get; }
 
         public event Action CooldownUpdated;
+        public event Action Used;
 
         public void TickCooldown()
         {
@@ -41,6 +42,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
             CooldownUpdated?.Invoke();
 
             OnUse();
+            Used?.Invoke();
         }
 
         protected abstract void OnUse();
