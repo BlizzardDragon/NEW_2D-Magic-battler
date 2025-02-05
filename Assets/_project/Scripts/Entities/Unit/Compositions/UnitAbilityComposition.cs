@@ -6,7 +6,7 @@ using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Compositions
 {
-    public class PlayerAbilityComposition : EntityModuleCompositionBase
+    public class UnitAbilityComposition : EntityModuleCompositionBase
     {
         public override void Create(IEntity entity)
         {

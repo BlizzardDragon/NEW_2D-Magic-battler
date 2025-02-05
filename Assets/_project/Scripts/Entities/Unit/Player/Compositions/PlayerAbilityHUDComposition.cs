@@ -11,7 +11,7 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
         public override void Create(IEntity entity)
         {
-            var unitMono = entity.GetModule<UnitMono>();
+            var unitMono = entity.GetModule<PlayerUnitMono>();
             var abilityManager = entity.GetModule<IAbilityManager>();
             var abilitiesHudViewport = Get<IAbilitiesHUDViewport>();
 

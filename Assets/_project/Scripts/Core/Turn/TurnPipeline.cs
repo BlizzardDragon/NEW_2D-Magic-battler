@@ -25,16 +25,18 @@ namespace _project.Scripts.Core.Turn
         {
             _tasks.Add(task);
 
-            if (_started) return;
             if (_tasks.Count < 2) return;
 
-            _started = true;
             Run();
         }
 
         public void Run()
         {
+            if (_started) return;
+
+            _started = true;
             _currentIndex = 0;
+
             RunNextTask();
         }
 
@@ -42,6 +44,7 @@ namespace _project.Scripts.Core.Turn
         {
             if (_currentIndex >= _tasks.Count)
             {
+                _started = false;
                 Finished?.Invoke();
                 return;
             }

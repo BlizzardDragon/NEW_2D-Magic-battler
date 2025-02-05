@@ -340,6 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245266786}
   - component: {fileID: 245266787}
+  - component: {fileID: 245266788}
   m_Layer: 0
   m_Name: Mono
   m_TagString: Untagged
@@ -375,8 +376,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Target>k__BackingField: {fileID: 169872913}
-  <AbilityButtonViewPrefab>k__BackingField: {fileID: 2591278870412422898, guid: 03397d90e7272b043a74421bfceaadcf, type: 3}
   <AbilitiesProvider>k__BackingField: {fileID: 11400000, guid: 86b8c35cac5a40e4ea98248b66dcee3c, type: 2}
+--- !u!114 &245266788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245266785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5591a2760e94718b38f64eaa2b8e7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AbilityButtonViewPrefab>k__BackingField: {fileID: 2591278870412422898, guid: 03397d90e7272b043a74421bfceaadcf, type: 3}
 --- !u!1 &339876588
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitMono: {fileID: 245266787}
+  _playerUnitMono: {fileID: 245266788}
 --- !u!1 &499585569
 GameObject:
   m_ObjectHideFlags: 0
