@@ -24,9 +24,9 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
 
         public void Tick()
         {
-            foreach (var effect in _effects)
+            for (var i = _effects.Count - 1; i >= 0; i--)
             {
-                effect.Tick();
+                _effects[i].Tick();
             }
         }
 
@@ -39,10 +39,8 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
 
         public void RemoveEffects<T>() where T : AbilityEffect
         {
-            foreach (var effect in _effects.OfType<T>())
-            {
-                effect.StopEffect();
-            }
+            var effect = _effects.OfType<T>().FirstOrDefault();
+            effect?.StopEffect();
         }
 
         public bool TryGetEffect<T>(out T effect) where T : AbilityEffect

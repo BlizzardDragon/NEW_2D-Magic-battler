@@ -10,12 +10,13 @@ namespace _project.Scripts.Entities.Unit.Abilities
             Config = config;
         }
 
+        public string Name => Config.Name;
         public bool IsAvailable => Cooldown <= 0;
         public int Cooldown { get; private set; }
         public AbilityConfig Config { get; }
 
         public event Action CooldownUpdated;
-        public event Action Used;
+        public event Action<Ability> Used;
 
         public void TickCooldown()
         {
@@ -42,7 +43,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
             CooldownUpdated?.Invoke();
 
             OnUse();
-            Used?.Invoke();
+            Used?.Invoke(this);
         }
 
         protected abstract void OnUse();

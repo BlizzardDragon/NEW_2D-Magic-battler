@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _project.Scripts.Core.Turn.Tasks;
+using UnityEngine;
 
 namespace _project.Scripts.Core.Turn
 {
@@ -44,9 +45,8 @@ namespace _project.Scripts.Core.Turn
         {
             if (_currentIndex >= _tasks.Count)
             {
-                _started = false;
+                _currentIndex = 0;
                 Finished?.Invoke();
-                return;
             }
 
             var task = _tasks[_currentIndex];

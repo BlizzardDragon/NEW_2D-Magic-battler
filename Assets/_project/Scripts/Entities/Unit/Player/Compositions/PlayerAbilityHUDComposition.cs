@@ -3,7 +3,7 @@ using _project.Scripts.Entities.Unit.Abilities;
 using _project.Scripts.Entities.Unit.Abilities.UI;
 using Entity.Core;
 
-namespace _project.Scripts.Entities.Unit.Compositions
+namespace _project.Scripts.Entities.Unit.Player.Compositions
 {
     public class PlayerAbilityHUDComposition : EntityModuleCompositionBase
     {

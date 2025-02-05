@@ -1,6 +1,7 @@
 using _project.Scripts.Core.UI.Abilities;
 using _project.Scripts.Entities.Unit.Abilities;
 using _project.Scripts.Entities.Unit.Abilities.Effects;
+using UnityEngine;
 
 namespace _project.Scripts.Core.Turn.Tasks
 {
@@ -24,7 +25,7 @@ namespace _project.Scripts.Core.Turn.Tasks
         {
             foreach (var ability in _abilityManager.Abilities)
             {
-                ability.Used += Finish;
+                ability.Used += OnUsed; 
             }
 
             _abilityManager.TickCooldown();
@@ -39,8 +40,14 @@ namespace _project.Scripts.Core.Turn.Tasks
 
             foreach (var ability in _abilityManager.Abilities)
             {
-                ability.Used -= Finish;
+                ability.Used -= OnUsed;
             }
+        }
+
+        private void OnUsed(Ability ability)
+        {
+            Debug.Log($"Player used: {ability.Name}");
+            Finish();
         }
     }
 }

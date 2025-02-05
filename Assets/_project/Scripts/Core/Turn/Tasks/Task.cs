@@ -21,6 +21,8 @@ namespace _project.Scripts.Core.Turn.Tasks
 
                 callback?.Invoke(this);
             }
+
+            OnFinish();
         }
 
         protected abstract void OnRun();
