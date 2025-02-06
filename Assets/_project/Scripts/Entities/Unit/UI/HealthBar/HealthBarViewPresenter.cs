@@ -1,6 +1,6 @@
 using _project.Scripts.Entities.Health;
 
-namespace _project.Scripts.Entities.Unit.UI
+namespace _project.Scripts.Entities.Unit.UI.HealthBar
 {
     public class HealthBarViewPresenter
     {

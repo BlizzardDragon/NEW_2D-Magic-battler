@@ -8,6 +8,7 @@ namespace _project.Scripts.Entities.Unit.Enemy.Compositions
     public class EnemyTurnComposition : EntityModuleCompositionBase
     {
         private EnemyUnitAI _ai;
+        private EnemyTurnTask _task;
 
         public override void Create(IEntity entity)
         {
@@ -15,14 +16,15 @@ namespace _project.Scripts.Entities.Unit.Enemy.Compositions
             var abilityEffectsManager = entity.GetModule<IAbilityEffectsManager>();
 
             _ai = new EnemyUnitAI(abilityManager);
-            var task = new EnemyTurnTask(_ai, abilityManager, abilityEffectsManager);
+            _task = new EnemyTurnTask(_ai, abilityManager, abilityEffectsManager);
 
-            entity.AddModule<Task>(task);
+            entity.AddModule<Task>(_task);
         }
 
         protected override void OnBeforeDestroy()
         {
             _ai.Dispose();
+            _task.Dispose();
         }
     }
 }

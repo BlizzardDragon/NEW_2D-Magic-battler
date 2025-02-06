@@ -1,6 +1,7 @@
 using _project.Scripts.Core.UI.Abilities;
 using _project.Scripts.Entities.Unit.Abilities;
 using _project.Scripts.Entities.Unit.Abilities.UI;
+using _project.Scripts.Entities.Unit.Player.Configs;
 using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Player.Compositions
@@ -11,12 +12,12 @@ namespace _project.Scripts.Entities.Unit.Player.Compositions
 
         public override void Create(IEntity entity)
         {
-            var unitMono = entity.GetModule<PlayerUnitMono>();
+            var uiConfig = entity.GetModule<PlayerUIConfig>();
             var abilityManager = entity.GetModule<IAbilityManager>();
             var abilitiesHudViewport = Get<IAbilitiesHUDViewport>();
 
             _abilitiesViewFactory = new AbilitiesViewFactory(
-                abilitiesHudViewport, abilityManager, unitMono.AbilityButtonViewPrefab);
+                abilitiesHudViewport, abilityManager, uiConfig.AbilityButtonViewPrefab);
         }
 
         public override void Initialize()
