@@ -12,6 +12,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
 
         public string Name => Config.Name;
         public bool IsAvailable => Cooldown <= 0;
+        public bool CooldownIsStopped { get; protected set; }
         public int Cooldown { get; private set; }
         public AbilityConfig Config { get; }
 
@@ -20,15 +21,18 @@ namespace _project.Scripts.Entities.Unit.Abilities
 
         public void TickCooldown()
         {
-            Cooldown--;
+            if (!CooldownIsStopped)
+            {
+                Cooldown--;
+            }
 
             if (Cooldown < 0)
             {
                 Cooldown = 0;
             }
 
-            CooldownUpdated?.Invoke();
             OnTickCooldown();
+            CooldownUpdated?.Invoke();
         }
 
         protected virtual void OnTickCooldown()

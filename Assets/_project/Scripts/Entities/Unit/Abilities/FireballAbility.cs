@@ -29,10 +29,20 @@ namespace _project.Scripts.Entities.Unit.Abilities
             {
                 if (target.TryGetModule(out IHealth health))
                 {
+                    CooldownIsStopped = true;
+
                     var effect = new BurnEffect(health, _config.EffectConfig.Duration, _config.EffectConfig);
                     effectsManager.AddEffect(effect);
+
+                    effect.EffectEnded += OnEffectEnded;
                 }
             }
+        }
+
+        private void OnEffectEnded(AbilityEffect abilityEffect)
+        {
+            CooldownIsStopped = false;
+            abilityEffect.EffectEnded -= OnEffectEnded;
         }
     }
 }

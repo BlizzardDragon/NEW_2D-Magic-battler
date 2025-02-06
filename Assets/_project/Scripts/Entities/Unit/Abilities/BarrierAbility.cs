@@ -12,7 +12,9 @@ namespace _project.Scripts.Entities.Unit.Abilities
         private readonly BarrierAbilityConfig _config;
 
         public BarrierAbility(
-            IHealth health, IAbilityEffectsManager effectsManager, BarrierAbilityConfig config) : base(config)
+            IHealth health,
+            IAbilityEffectsManager effectsManager,
+            BarrierAbilityConfig config) : base(config)
         {
             _health = health;
             _effectsManager = effectsManager;
@@ -21,9 +23,18 @@ namespace _project.Scripts.Entities.Unit.Abilities
 
         protected override void OnUse()
         {
-            var effect = new BarrierEffect(_health, _config.EffectConfig.Duration, _config.EffectConfig);
+            CooldownIsStopped = true;
 
+            var effect = new BarrierEffect(_health, _config.EffectConfig.Duration, _config.EffectConfig);
             _effectsManager.AddEffect(effect);
+
+            effect.EffectEnded += OnEffectEnded;
+        }
+
+        private void OnEffectEnded(AbilityEffect abilityEffect)
+        {
+            CooldownIsStopped = false;
+            abilityEffect.EffectEnded -= OnEffectEnded;
         }
     }
 }

@@ -36,18 +36,29 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
 
         private void UpdateViewState()
         {
-            var cooldown = _model.Cooldown;
-
-            if (cooldown <= 0)
+            if (_model.IsAvailable)
             {
                 _view.EnableButton(true);
-                _view.RenderCooldown("");
+                RenderEmpty();
             }
             else
             {
-                _view.EnableButton(false);
-                _view.RenderCooldown(cooldown.ToString());
+                if (_model.CooldownIsStopped)
+                {
+                    _view.EnableButton(false);
+                    RenderEmpty();
+                }
+                else
+                {
+                    _view.EnableButton(false);
+                    _view.RenderCooldown(_model.Cooldown.ToString());
+                }
             }
+        }
+
+        private void RenderEmpty()
+        {
+            _view.RenderCooldown("");
         }
     }
 }
