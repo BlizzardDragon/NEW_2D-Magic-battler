@@ -12,9 +12,9 @@ namespace _project.Scripts.Core.UI.Abilities
 
         public Button Button => _button;
 
-        public void EnableButton(bool isEnable)
+        public void EnableButton(bool enable)
         {
-            _button.interactable = isEnable;
+            _button.interactable = enable;
         }
 
         public void RenderCooldown(string text)

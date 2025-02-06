@@ -1,4 +1,5 @@
 using _project.Scripts.Core.UI.Abilities;
+using UnityEngine;
 
 namespace _project.Scripts.Entities.Unit.Abilities.UI
 {
@@ -20,12 +21,14 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
 
             _view.Button.onClick.AddListener(OnButtonClicked);
             _model.CooldownUpdated += UpdateViewState;
+            _model.Enabled += OnAbilityEnabled;
         }
 
         public void OnDisable()
         {
             _view.Button.onClick.RemoveListener(OnButtonClicked);
             _model.CooldownUpdated -= UpdateViewState;
+            _model.Enabled -= OnAbilityEnabled;
         }
 
         private void OnButtonClicked()
@@ -36,7 +39,14 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
 
         private void UpdateViewState()
         {
-            if (_model.IsAvailable)
+            if (!_model.IsEnable)
+            {
+                _view.EnableButton(false);
+                RenderEmpty();
+                return;
+            }
+
+            if (_model.CooldownIsOver)
             {
                 _view.EnableButton(true);
                 RenderEmpty();
@@ -59,6 +69,11 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
         private void RenderEmpty()
         {
             _view.RenderCooldown("");
+        }
+
+        private void OnAbilityEnabled(bool enable)
+        {
+            _view.EnableButton(enable);
         }
     }
 }

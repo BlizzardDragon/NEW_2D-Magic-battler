@@ -1,4 +1,3 @@
-using _project.Scripts.Entities.Health;
 using _project.Scripts.Entities.Unit.Abilities.Configs;
 
 namespace _project.Scripts.Entities.Unit.Abilities

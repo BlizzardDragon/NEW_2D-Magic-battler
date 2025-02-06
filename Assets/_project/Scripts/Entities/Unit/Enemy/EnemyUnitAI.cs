@@ -37,7 +37,7 @@ namespace _project.Scripts.Entities.Unit.Enemy
 
             foreach (var ability in _abilityManager.Abilities)
             {
-                if (ability.IsAvailable)
+                if (ability.CooldownIsOver)
                 {
                     _availableAbilities.Add(ability);
                 }

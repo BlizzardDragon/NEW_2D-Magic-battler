@@ -8,6 +8,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
 
         void TickCooldown();
         void AddAbility(Ability ability);
+        void EnableAbilities(bool enable);
     }
 
     public class AbilityManager : IAbilityManager
@@ -27,6 +28,14 @@ namespace _project.Scripts.Entities.Unit.Abilities
         public void AddAbility(Ability ability)
         {
             _abilities.Add(ability);
+        }
+
+        public void EnableAbilities(bool enable)
+        {
+            foreach (var ability in _abilities)
+            {
+                ability.IsEnable = enable;
+            }
         }
     }
 }
