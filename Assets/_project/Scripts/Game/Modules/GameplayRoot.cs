@@ -18,6 +18,8 @@ namespace _project.Scripts.Game.Modules
             var turnPipeline = Get<ITurnPipeline>();
 
             _pipelineRunner = new TurnPipelineRunner(turnPipeline, _player, _enemy);
+
+            BindAsLocal<ITurnPipelineRunner>(_pipelineRunner);
         }
 
         public override async UniTask Initialize()

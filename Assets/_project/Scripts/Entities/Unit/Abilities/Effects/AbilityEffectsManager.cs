@@ -13,6 +13,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
         void AddEffect(AbilityEffect effect);
         void RemoveEffects<T>() where T : AbilityEffect;
         bool TryGetEffect<T>(out T effect) where T : AbilityEffect;
+        void RemoveAllEffects();
     }
 
     public class AbilityEffectsManager : IAbilityEffectsManager
@@ -53,6 +54,14 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
 
             effect = default;
             return false;
+        }
+
+        public void RemoveAllEffects()
+        {
+            for (var i = _effects.Count - 1; i >= 0; i--)
+            {
+                _effects[i].StopEffect();
+            }
         }
 
         private void OnEffectEnded(AbilityEffect effect)

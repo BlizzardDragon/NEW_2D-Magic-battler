@@ -1,13 +1,13 @@
 using _project.Scripts.Core.Turn;
 using _project.Scripts.Core.Turn.Tasks;
 using Entity.Core;
-using UnityEngine;
 
 namespace _project.Scripts.Game
 {
     public interface ITurnPipelineRunner
     {
         void Run();
+        void Stop();
     }
 
     public class TurnPipelineRunner : ITurnPipelineRunner
@@ -32,6 +32,11 @@ namespace _project.Scripts.Game
             }
             
             _turnPipeline.Run();
+        }
+
+        public void Stop()
+        {
+            OnDisable();
         }
 
         public void OnEnable()

@@ -26,7 +26,7 @@ namespace _project.Scripts.Entities.Unit.UI.HealthBar
 
         private void UpdateHealthBar()
         {
-            _view.RenderHealth(_model.CurrentHealth.ToString());
+            _view.RenderHealth(_model.CurrentHealth >= 0 ? _model.CurrentHealth.ToString() : "0");
             _view.RenderFillAmount((float) _model.CurrentHealth / _model.MaxHealth);
         }
     }

@@ -6,8 +6,8 @@ namespace _project.Scripts.Entities.Unit.Abilities
 {
     public abstract class Ability
     {
-        private bool _isEnable;
-        
+        private bool _isEnable = true;
+
         protected Ability(AbilityConfig config)
         {
             Config = config;
@@ -58,6 +58,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
 
         public void Use()
         {
+            if (!IsEnable) return;
             if (!CooldownIsOver) return;
 
             Cooldown = Config.Cooldown;
