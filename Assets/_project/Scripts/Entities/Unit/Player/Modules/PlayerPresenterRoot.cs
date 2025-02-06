@@ -20,6 +20,7 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
             CreateComposition<UnitDamageReceiverComposition>(entity);
             CreateComposition<PlayerTurnComposition>(entity);
 
+            CreateComposition<UnitViewComposition>(entity);
             CreateComposition<PlayerAbilityHUDComposition>(entity);
         }
     }

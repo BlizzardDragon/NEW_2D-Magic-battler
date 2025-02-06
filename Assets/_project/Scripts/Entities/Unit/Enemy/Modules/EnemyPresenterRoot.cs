@@ -17,6 +17,8 @@ namespace _project.Scripts.Entities.Unit.Enemy.Modules
             CreateComposition<UnitAbilityComposition>(entity);
             CreateComposition<UnitDamageReceiverComposition>(entity);
             CreateComposition<EnemyTurnComposition>(entity);
+            
+            CreateComposition<UnitViewComposition>(entity);
         }
     }
 }

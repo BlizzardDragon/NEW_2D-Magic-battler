@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Target>k__BackingField: {fileID: 1302884257}
+  <HealthBarView>k__BackingField: {fileID: 1054275250}
   <AbilitiesProvider>k__BackingField: {fileID: 11400000, guid: 86b8c35cac5a40e4ea98248b66dcee3c, type: 2}
 --- !u!4 &46966755
 Transform:
@@ -520,6 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Target>k__BackingField: {fileID: 380110252}
+  <HealthBarView>k__BackingField: {fileID: 853758824}
   <AbilitiesProvider>k__BackingField: {fileID: 11400000, guid: 86b8c35cac5a40e4ea98248b66dcee3c, type: 2}
 --- !u!114 &245266788
 MonoBehaviour:
@@ -1337,6 +1339,7 @@ GameObject:
   - component: {fileID: 853758821}
   - component: {fileID: 853758823}
   - component: {fileID: 853758822}
+  - component: {fileID: 853758824}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -1403,6 +1406,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853758820}
   m_CullTransparentMesh: 1
+--- !u!114 &853758824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853758820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf3cd4538a4803acce0b0ded62356b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 237331316}
+  _healthPoints: {fileID: 1404959085}
 --- !u!1 &912193873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1616,7 @@ GameObject:
   - component: {fileID: 1054275247}
   - component: {fileID: 1054275249}
   - component: {fileID: 1054275248}
+  - component: {fileID: 1054275250}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -1665,6 +1683,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054275246}
   m_CullTransparentMesh: 1
+--- !u!114 &1054275250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054275246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf3cd4538a4803acce0b0ded62356b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 295440094}
+  _healthPoints: {fileID: 1980255317}
 --- !u!1 &1210942300
 GameObject:
   m_ObjectHideFlags: 0

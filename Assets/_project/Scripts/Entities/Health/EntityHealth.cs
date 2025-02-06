@@ -6,6 +6,7 @@ namespace _project.Scripts.Entities.Health
     public interface IHealth
     {
         int CurrentHealth { get; }
+        int MaxHealth { get; }
         bool IsDead { get; }
 
         event Action<int> DamageReceived;
@@ -19,15 +20,14 @@ namespace _project.Scripts.Entities.Health
 
     public class EntityHealth : IHealth
     {
-        private readonly int _maxHealth;
-
-        public EntityHealth(int startHealth)
+        public EntityHealth(int maxHealth)
         {
-            CurrentHealth = startHealth;
-            _maxHealth = startHealth;
+            CurrentHealth = maxHealth;
+            MaxHealth = maxHealth;
         }
 
         public int CurrentHealth { get; private set; }
+        public int MaxHealth { get; }
         public bool IsDead { get; private set; }
 
         public event Action<int> DamageReceived;
@@ -70,9 +70,9 @@ namespace _project.Scripts.Entities.Health
             HealReceived?.Invoke(heal);
             HealthChanged?.Invoke();
 
-            if (CurrentHealth <= _maxHealth) return;
+            if (CurrentHealth <= MaxHealth) return;
 
-            CurrentHealth = _maxHealth;
+            CurrentHealth = MaxHealth;
         }
     }
 }
