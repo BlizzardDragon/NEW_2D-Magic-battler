@@ -1,5 +1,4 @@
 using _project.Scripts.Entities.Health;
-using UnityEngine;
 
 namespace _project.Scripts.Entities.Unit.UI
 {
@@ -16,7 +15,6 @@ namespace _project.Scripts.Entities.Unit.UI
 
         public void OnEnable()
         {
-            Debug.Log($"UpdateHealthBar");
             UpdateHealthBar();
             _model.HealthChanged += UpdateHealthBar;
         }

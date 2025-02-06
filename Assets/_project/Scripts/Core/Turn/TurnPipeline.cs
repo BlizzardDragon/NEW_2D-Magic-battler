@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using _project.Scripts.Core.Turn.Tasks;
-using UnityEngine;
 
 namespace _project.Scripts.Core.Turn
 {
@@ -18,26 +17,17 @@ namespace _project.Scripts.Core.Turn
         private readonly List<Task> _tasks = new();
 
         private int _currentIndex = -1;
-        private bool _started;
 
         public event Action Finished;
 
         public void AddTask(Task task)
         {
             _tasks.Add(task);
-
-            if (_tasks.Count < 2) return;
-
-            Run();
         }
 
         public void Run()
         {
-            if (_started) return;
-
-            _started = true;
             _currentIndex = 0;
-
             RunNextTask();
         }
 
@@ -45,8 +35,8 @@ namespace _project.Scripts.Core.Turn
         {
             if (_currentIndex >= _tasks.Count)
             {
-                _currentIndex = 0;
                 Finished?.Invoke();
+                return;
             }
 
             var task = _tasks[_currentIndex];

@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 7617554}
   - component: {fileID: 7617555}
   m_Layer: 0
-  m_Name: BOOTSTRAP ROOT
+  m_Name: '## BOOTSTRAP ROOT'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +170,7 @@ MonoBehaviour:
   order:
   - {fileID: 1826106489}
   - {fileID: 2145050254}
+  - {fileID: 613225415}
   cachedInjectables: []
   cachedCommandListeners: []
 --- !u!1 &57123827
@@ -428,7 +429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1235745235
 RectTransform:
   m_ObjectHideFlags: 0
@@ -721,7 +722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1765893648}
   m_Layer: 0
-  m_Name: UI
+  m_Name: '## UI'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
