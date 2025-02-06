@@ -1,19 +1,19 @@
-using System;
 using Cysharp.Threading.Tasks;
-using UnityEngine.SceneManagement;
 using VampireSquid.Common.Assets;
 using VampireSquid.Common.Commands;
 using VampireSquid.Common.Commands.Handlers;
 using VampireSquid.Common.CompositeRoot;
 
-
 namespace _project.Scripts.Core.Modules
 {
     public class BootstrapRoot : CompositeRootBase
     {
+        private SceneLoader _sceneLoader;
+
         public override async UniTask InstallBindings()
         {
             var assetProvider = new AddressablesAssetsProvider();
+            _sceneLoader = new SceneLoader();
 
             BindAsGlobal<IAssetsProvider>(assetProvider);
             BindAsGlobal<IGlobalCommandHandler>(new GlobalCommandHandler());
@@ -21,8 +21,7 @@ namespace _project.Scripts.Core.Modules
 
         public override async UniTask Initialize()
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            _sceneLoader.LoadGameScene();
         }
     }
 }
