@@ -31,7 +31,7 @@ namespace _project.Scripts.Core.Turn.Tasks
 
         protected override void OnRun()
         {
-            OnRunAsync();
+            OnRunAsync().Forget();
         }
 
         private async UniTask OnRunAsync()
