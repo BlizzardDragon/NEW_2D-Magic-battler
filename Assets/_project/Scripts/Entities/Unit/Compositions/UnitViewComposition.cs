@@ -13,9 +13,9 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
         public override void Create(IEntity entity)
         {
+            var unitMono = entity.GetModule<UnitMono>();
             var health = entity.GetModule<IHealth>();
             var abilityEffectsManager = entity.GetModule<IAbilityEffectsManager>();
-            var unitMono = entity.GetModule<UnitMono>();
 
             _healthBarViewPresenter = new HealthBarViewPresenter(health, unitMono.HealthBarView);
 

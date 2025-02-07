@@ -10,9 +10,9 @@ namespace _project.Scripts.Entities.Unit.Compositions
     {
         public override void Create(IEntity entity)
         {
+            var unitMono = entity.GetModule<UnitMono>();
             var health = entity.GetModule<IHealth>();
             var targetService = entity.GetModule<IEntityTargetService>();
-            var unitMono = entity.GetModule<UnitMono>();
             var abilityConfigs = unitMono.AbilitiesProvider.AbilityConfigs;
 
             var abilityFactory = new AbilityFactory();
