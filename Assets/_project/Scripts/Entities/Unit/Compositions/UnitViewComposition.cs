@@ -19,8 +19,8 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
             _healthBarViewPresenter = new HealthBarViewPresenter(health, unitMono.HealthBarView);
 
-            var abilityEffectViewFactory =
-                new AbilityEffectViewFactory(unitMono.StatusBarContent, unitMono.UnitUIConfig);
+            var abilityEffectViewFactory = new AbilityEffectViewFactory(
+                unitMono.StatusBarContent, unitMono.UnitUIConfig);
 
             _abilityEffectsPresenter = new AbilityEffectsPresenter(abilityEffectsManager, abilityEffectViewFactory);
         }
