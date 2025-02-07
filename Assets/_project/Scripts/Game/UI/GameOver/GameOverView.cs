@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace _project.Scripts.Game.UI
+namespace _project.Scripts.Game.UI.GameOver
 {
     public class GameOverView : MonoBehaviour
     {

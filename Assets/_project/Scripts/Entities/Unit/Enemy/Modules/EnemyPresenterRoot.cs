@@ -42,7 +42,7 @@ namespace _project.Scripts.Entities.Unit.Enemy.Modules
             _deathPresenter.OnDisable();
         }
 
-        public class EnemyDeathPresenter
+        private class EnemyDeathPresenter
         {
             private readonly IHealth _health;
 

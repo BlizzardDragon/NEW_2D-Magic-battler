@@ -46,7 +46,7 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
             _deathPresenter.OnDisable();
         }
 
-        public class PlayerDeathPresenter
+        private class PlayerDeathPresenter
         {
             private readonly IHealth _health;
 

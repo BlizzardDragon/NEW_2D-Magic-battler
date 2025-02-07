@@ -1,7 +1,7 @@
 using _project.Scripts.Game.Commands;
 using VampireSquid.Common.Commands;
 
-namespace _project.Scripts.Game.UI
+namespace _project.Scripts.Game.UI.GameOver
 {
     public class GameOverViewPresenter : ICommandListener<WinGameCommand>, ICommandListener<LoseGameCommand>
     {

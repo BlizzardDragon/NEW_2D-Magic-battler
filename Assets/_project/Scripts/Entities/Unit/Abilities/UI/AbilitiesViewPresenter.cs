@@ -29,6 +29,8 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
             _view.Button.onClick.RemoveListener(OnButtonClicked);
             _model.CooldownUpdated -= UpdateViewState;
             _model.Enabled -= OnAbilityEnabled;
+
+            Object.Destroy(_view.gameObject);
         }
 
         private void OnButtonClicked()

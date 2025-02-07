@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _project.Scripts.Core.UI.Abilities;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _project.Scripts.Entities.Unit.Abilities.UI
 {
@@ -27,7 +27,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
         {
             foreach (var ability in _abilityManager.Abilities)
             {
-                var view = GameObject.Instantiate(_buttonViewPrefab, _viewport.Content.transform);
+                var view = Object.Instantiate(_buttonViewPrefab, _viewport.Content.transform);
                 var presenter = new AbilitiesViewPresenter(ability, view);
 
                 _presenters.Add(presenter);
