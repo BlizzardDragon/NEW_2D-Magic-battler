@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _project.Scripts.Entities.Unit.Abilities
 {
@@ -9,6 +11,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
         void TickCooldown();
         void AddAbility(Ability ability);
         void EnableAbilities(bool enable);
+        Ability GetAbility(AbilityType type);
     }
 
     public class AbilityManager : IAbilityManager
@@ -36,6 +39,16 @@ namespace _project.Scripts.Entities.Unit.Abilities
             {
                 ability.IsEnable = enable;
             }
+        }
+
+        public Ability GetAbility(AbilityType type)
+        {
+            foreach (var ability in _abilities.Where(ability => ability.Config.Type == type))
+            {
+                return ability;
+            }
+
+            throw new AggregateException($"Ability with type ({type}) now found!");
         }
     }
 }

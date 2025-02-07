@@ -1,4 +1,5 @@
 using _project.Scripts.Core.UI.Abilities;
+using _project.Scripts.Entities.Unit.Abilities.Network;
 using UnityEngine;
 
 namespace _project.Scripts.Entities.Unit.Abilities.UI
@@ -7,6 +8,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
     {
         private readonly Ability _model;
         private readonly AbilityButtonView _view;
+        private readonly INetworkAbilitiesAdapter _networkAbilitiesAdapter;
 
         public AbilityViewPresenter(Ability model, AbilityButtonView view)
         {
@@ -35,6 +37,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
 
         private void OnButtonClicked()
         {
+            _networkAbilitiesAdapter.UseAbilityRequest_Client(_model.Config.Type);
             _model.Use();
             UpdateViewState();
         }
