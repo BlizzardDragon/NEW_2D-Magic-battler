@@ -11,7 +11,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
         private readonly IAbilityManager _abilityManager;
         private readonly AbilityButtonView _buttonViewPrefab;
 
-        private readonly List<AbilitiesViewPresenter> _presenters = new();
+        private readonly List<AbilityViewPresenter> _presenters = new();
 
         public AbilitiesViewFactory(
             IAbilitiesHUDViewport viewport,
@@ -28,7 +28,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
             foreach (var ability in _abilityManager.Abilities)
             {
                 var view = Object.Instantiate(_buttonViewPrefab, _viewport.Content.transform);
-                var presenter = new AbilitiesViewPresenter(ability, view);
+                var presenter = new AbilityViewPresenter(ability, view);
 
                 _presenters.Add(presenter);
                 presenter.OnEnable();

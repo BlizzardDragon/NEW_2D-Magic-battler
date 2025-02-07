@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace _project.Scripts.Entities.Unit.Abilities.UI
 {
-    public class AbilitiesViewPresenter
+    public class AbilityViewPresenter
     {
         private readonly Ability _model;
         private readonly AbilityButtonView _view;
 
-        public AbilitiesViewPresenter(Ability model, AbilityButtonView view)
+        public AbilityViewPresenter(Ability model, AbilityButtonView view)
         {
             _model = model;
             _view = view;
