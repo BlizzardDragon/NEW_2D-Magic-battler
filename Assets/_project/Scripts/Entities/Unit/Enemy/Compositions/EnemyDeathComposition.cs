@@ -2,17 +2,17 @@ using _project.Scripts.Entities.Health;
 using Entity.Core;
 using VampireSquid.Common.Commands.Handlers;
 
-namespace _project.Scripts.Entities.Unit.Player.Compositions
+namespace _project.Scripts.Entities.Unit.Enemy.Compositions
 {
-    public class PlayerDeathComposition : EntityModuleCompositionBase
+    public class EnemyDeathComposition : EntityModuleCompositionBase
     {
-        private PlayerDeathPresenter _deathPresenter;
+        private EnemyDeathPresenter _deathPresenter;
 
         public override void Create(IEntity entity)
         {
             var health = entity.GetModule<IHealth>();
 
-            _deathPresenter = new PlayerDeathPresenter(health);
+            _deathPresenter = new EnemyDeathPresenter(health);
 
             CommandHandler.Instance.AddListener(_deathPresenter);
         }
