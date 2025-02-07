@@ -67,6 +67,12 @@ namespace _project.Scripts.Entities.Health
             if (IsDead) return;
 
             CurrentHealth += heal;
+
+            if (CurrentHealth > MaxHealth)
+            {
+                CurrentHealth = MaxHealth;
+            }
+
             HealReceived?.Invoke(heal);
             HealthChanged?.Invoke();
 
