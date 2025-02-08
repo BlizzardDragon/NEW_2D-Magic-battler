@@ -70,8 +70,6 @@ namespace Entity.Core
 
         private void OnDestroy()
         {
-            if (!gameObject.scene.isLoaded) return;
-            
             foreach (var updatable in _updatable)
                 UpdateManager.RemoveUpdatable(updatable);
 
