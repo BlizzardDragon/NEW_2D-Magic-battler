@@ -5,10 +5,12 @@ namespace _project.Scripts.Entities.Unit.Abilities.Network
     public interface INetworkAbilitiesAdapter
     {
         event Action<AbilityType> ClientRequestedAbilityUse;
+        event Action<AbilityType> ClientRequestedUpdateAbilityState;
         event Action<AbilityType, bool> ServerUpdatedAbilityEnable;
         event Action<AbilityType, int?> ServerUpdatedAbilityCooldown;
 
         void UseAbilityRequest_Client(AbilityType type);
+        void RequestUpdateAbilityState_Client(AbilityType type);
         void UpdateAbilityEnable_Server(AbilityType type, bool enable);
         void UpdateAbilityCooldown_Server(AbilityType type, int? cooldown);
     }
@@ -16,6 +18,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Network
     public class NetworkAbilitiesAdapter : INetworkAbilitiesAdapter
     {
         public event Action<AbilityType> ClientRequestedAbilityUse;
+        public event Action<AbilityType> ClientRequestedUpdateAbilityState;
         public event Action<AbilityType, bool> ServerUpdatedAbilityEnable;
         public event Action<AbilityType, int?> ServerUpdatedAbilityCooldown;
 
@@ -27,6 +30,16 @@ namespace _project.Scripts.Entities.Unit.Abilities.Network
         private void UseAbilityRequest_Server(AbilityType type)
         {
             ClientRequestedAbilityUse?.Invoke(type);
+        }
+
+        public void RequestUpdateAbilityState_Client(AbilityType type)
+        {
+            RequestUpdateAbilityState_Server(type);
+        }
+
+        private void RequestUpdateAbilityState_Server(AbilityType type)
+        {
+            ClientRequestedUpdateAbilityState?.Invoke(type);
         }
 
         public void UpdateAbilityEnable_Server(AbilityType type, bool enable)

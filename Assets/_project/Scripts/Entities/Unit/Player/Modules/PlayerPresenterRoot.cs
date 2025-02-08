@@ -3,6 +3,7 @@ using _project.Scripts.Entities.Unit.Player.Compositions;
 using _project.Scripts.Entities.Unit.Player.Configs;
 using Entity.Core;
 using UnityEngine;
+using VampireSquid.Common.Connections;
 
 namespace _project.Scripts.Entities.Unit.Player.Modules
 {
@@ -16,15 +17,27 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
             entity.AddModule<UnitMono>(_unitMono);
             entity.AddModule<PlayerUIConfig>(_uiConfig);
 
-            CreateComposition<UnitTargetComposition>(entity);
-            CreateComposition<UnitAbilityComposition>(entity);
+            CreateComposition<PlayerNetworkComposition>(entity);
+
+            if (entity.Presence.OnServer())
+            {
+                CreateComposition<UnitTargetComposition>(entity);
+                CreateComposition<UnitAbilityComposition>(entity);
+                
+                CreateComposition<ServerPlayerAbilityComposition>(entity);
+            }
+
+            if (entity.Presence.IsLocal())
+            {
+            }
+
             CreateComposition<UnitTakeDamageComposition>(entity);
             CreateComposition<UnitFinishGameComposition>(entity);
             CreateComposition<PlayerTurnComposition>(entity);
             CreateComposition<PlayerDeathComposition>(entity);
 
             CreateComposition<UnitViewComposition>(entity);
-            CreateComposition<PlayerAbilityHUDComposition>(entity);
+            CreateComposition<ClientPlayerAbilityHUDComposition>(entity);
         }
     }
 }

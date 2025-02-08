@@ -1,29 +1,31 @@
 namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
 {
-    public class ServerUseAbilityRequestHandler
+    public class ServerNetworkAbilityRequestsHandler
     {
         private readonly INetworkAbilitiesAdapter _networkAbilitiesAdapter;
-        private readonly IServerToClientAbilityStateSender _serverToClientAbilityStateSender;
+        private readonly IServerToClientAbilityStateSender _sender;
         private readonly IAbilityManager _abilityManager;
 
-        public ServerUseAbilityRequestHandler(
+        public ServerNetworkAbilityRequestsHandler(
             INetworkAbilitiesAdapter networkAbilitiesAdapter,
-            IServerToClientAbilityStateSender serverToClientAbilityStateSender,
+            IServerToClientAbilityStateSender sender,
             IAbilityManager abilityManager)
         {
             _networkAbilitiesAdapter = networkAbilitiesAdapter;
-            _serverToClientAbilityStateSender = serverToClientAbilityStateSender;
+            _sender = sender;
             _abilityManager = abilityManager;
         }
 
         public void OnEnable()
         {
             _networkAbilitiesAdapter.ClientRequestedAbilityUse += OnClientRequestedAbilityUse;
+            _networkAbilitiesAdapter.ClientRequestedUpdateAbilityState += UpdateAbilityState;
         }
 
         public void OnDisable()
         {
             _networkAbilitiesAdapter.ClientRequestedAbilityUse -= OnClientRequestedAbilityUse;
+            _networkAbilitiesAdapter.ClientRequestedUpdateAbilityState -= UpdateAbilityState;
         }
 
         private void OnClientRequestedAbilityUse(AbilityType type)
@@ -31,7 +33,13 @@ namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
             var ability = _abilityManager.GetAbility(type);
 
             ability.Use();
-            _serverToClientAbilityStateSender.SendAbilityStateToClient(ability);
+            _sender.SendAbilityStateToClient(ability);
+        }
+
+        private void UpdateAbilityState(AbilityType type)
+        {
+            var ability = _abilityManager.GetAbility(type);
+            _sender.SendAbilityStateToClient(ability);
         }
     }
 }

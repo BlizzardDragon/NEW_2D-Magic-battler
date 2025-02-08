@@ -1,4 +1,5 @@
 using _project.Scripts.Core.UI.Abilities;
+using _project.Scripts.Entities.Unit.Abilities.Configs;
 using _project.Scripts.Entities.Unit.Abilities.Network;
 using UnityEngine;
 
@@ -6,78 +7,57 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
 {
     public class AbilityViewPresenter
     {
-        private readonly Ability _model;
         private readonly AbilityButtonView _view;
         private readonly INetworkAbilitiesAdapter _networkAbilitiesAdapter;
+        private readonly AbilityConfig _config;
 
-        public AbilityViewPresenter(Ability model, AbilityButtonView view)
+        public AbilityViewPresenter(
+            AbilityButtonView view,
+            INetworkAbilitiesAdapter networkAbilitiesAdapter,
+            AbilityConfig config)
         {
-            _model = model;
             _view = view;
+            _networkAbilitiesAdapter = networkAbilitiesAdapter;
+            _config = config;
         }
 
         public void OnEnable()
         {
-            _view.RenderIcon(_model.Config.Sprite);
-            UpdateViewState();
+            _view.RenderIcon(_config.Sprite);
 
             _view.Button.onClick.AddListener(OnButtonClicked);
-            _model.CooldownUpdated += UpdateViewState;
-            _model.Enabled += OnAbilityEnabled;
+            _networkAbilitiesAdapter.ServerUpdatedAbilityCooldown += UpdateCooldown;
+            _networkAbilitiesAdapter.ServerUpdatedAbilityEnable += UpdateEnable;
+
+            _networkAbilitiesAdapter.RequestUpdateAbilityState_Client(_config.Type);
         }
 
         public void OnDisable()
         {
             _view.Button.onClick.RemoveListener(OnButtonClicked);
-            _model.CooldownUpdated -= UpdateViewState;
-            _model.Enabled -= OnAbilityEnabled;
+            _networkAbilitiesAdapter.ServerUpdatedAbilityCooldown -= UpdateCooldown;
+            _networkAbilitiesAdapter.ServerUpdatedAbilityEnable -= UpdateEnable;
 
             Object.Destroy(_view.gameObject);
         }
 
         private void OnButtonClicked()
         {
-            _networkAbilitiesAdapter.UseAbilityRequest_Client(_model.Config.Type);
-            _model.Use();
-            UpdateViewState();
+            _networkAbilitiesAdapter.UseAbilityRequest_Client(_config.Type);
         }
 
-        private void UpdateViewState()
+        private void UpdateCooldown(AbilityType type, int? cooldown)
         {
-            if (!_model.IsEnable)
-            {
-                _view.EnableButton(false);
-                RenderEmpty();
-                return;
-            }
+            if (type != _config.Type) return;
 
-            if (_model.CooldownIsOver)
-            {
-                _view.EnableButton(true);
-                RenderEmpty();
-            }
-            else
-            {
-                if (_model.CooldownIsStopped)
-                {
-                    _view.EnableButton(false);
-                    RenderEmpty();
-                }
-                else
-                {
-                    _view.EnableButton(false);
-                    _view.RenderCooldown(_model.Cooldown.ToString());
-                }
-            }
+            var text = cooldown == null ? "" : cooldown.ToString();
+            _view.RenderCooldown(text);
         }
 
-        private void RenderEmpty()
+        private void UpdateEnable(AbilityType type, bool enable)
         {
-            _view.RenderCooldown("");
-        }
+            if (type != _config.Type) return;
 
-        private void OnAbilityEnabled(bool enable)
-        {
             _view.EnableButton(enable);
         }
     }

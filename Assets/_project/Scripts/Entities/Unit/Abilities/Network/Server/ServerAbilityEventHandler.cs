@@ -1,5 +1,3 @@
-using _project.Scripts.Entities.Unit.Abilities.UI;
-
 namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
 {
     public class ServerAbilityEventHandler
