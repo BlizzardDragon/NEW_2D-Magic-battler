@@ -5,7 +5,7 @@ using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Player.Compositions
 {
-    public class PlayerTurnComposition : EntityModuleCompositionBase
+    public class ServerPlayerTurnComposition : EntityModuleCompositionBase
     {
         private PlayerTurnTask _task;
 

@@ -6,7 +6,7 @@ using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Compositions
 {
-    public class UnitTakeDamageComposition : EntityModuleCompositionBase
+    public class ServerUnitTakeDamageComposition : EntityModuleCompositionBase
     {
         private UnitDeathPresenter _deathPresenter;
 

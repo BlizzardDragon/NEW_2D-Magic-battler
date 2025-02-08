@@ -21,23 +21,21 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
 
             if (entity.Presence.OnServer())
             {
-                CreateComposition<UnitTargetComposition>(entity);
-                CreateComposition<UnitAbilityComposition>(entity);
-                
+                CreateComposition<ServerUnitTargetComposition>(entity);
+                CreateComposition<ServerUnitAbilityComposition>(entity);
+                CreateComposition<ServerUnitTakeDamageComposition>(entity);
+                CreateComposition<ServerUnitFinishGameComposition>(entity);
+
+                CreateComposition<ServerPlayerTurnComposition>(entity);
+                CreateComposition<ServerPlayerDeathComposition>(entity);
                 CreateComposition<ServerPlayerAbilityComposition>(entity);
             }
 
-            if (entity.Presence.IsLocal())
+            if (entity.Presence.IsRemote())
             {
+                CreateComposition<UnitViewComposition>(entity);
+                CreateComposition<ClientPlayerAbilityHUDComposition>(entity);
             }
-
-            CreateComposition<UnitTakeDamageComposition>(entity);
-            CreateComposition<UnitFinishGameComposition>(entity);
-            CreateComposition<PlayerTurnComposition>(entity);
-            CreateComposition<PlayerDeathComposition>(entity);
-
-            CreateComposition<UnitViewComposition>(entity);
-            CreateComposition<ClientPlayerAbilityHUDComposition>(entity);
         }
     }
 }

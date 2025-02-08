@@ -5,7 +5,7 @@ using VampireSquid.Common.Commands;
 
 namespace _project.Scripts.Entities.Unit.Compositions
 {
-    public class UnitFinishGameComposition : EntityModuleCompositionBase
+    public class ServerUnitFinishGameComposition : EntityModuleCompositionBase
     {
         public override void Create(IEntity entity)
         {

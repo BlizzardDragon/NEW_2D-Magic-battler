@@ -2,7 +2,7 @@ using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Compositions
 {
-    public class UnitTargetComposition : EntityModuleCompositionBase
+    public class ServerUnitTargetComposition : EntityModuleCompositionBase
     {
         public override void Create(IEntity entity)
         {

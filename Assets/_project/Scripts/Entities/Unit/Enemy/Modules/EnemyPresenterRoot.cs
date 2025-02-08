@@ -13,10 +13,10 @@ namespace _project.Scripts.Entities.Unit.Enemy.Modules
         {
             entity.AddModule<UnitMono>(_unitMono);
 
-            CreateComposition<UnitTargetComposition>(entity);
-            CreateComposition<UnitAbilityComposition>(entity);
-            CreateComposition<UnitTakeDamageComposition>(entity);
-            CreateComposition<UnitFinishGameComposition>(entity);
+            CreateComposition<ServerUnitTargetComposition>(entity);
+            CreateComposition<ServerUnitAbilityComposition>(entity);
+            CreateComposition<ServerUnitTakeDamageComposition>(entity);
+            CreateComposition<ServerUnitFinishGameComposition>(entity);
             CreateComposition<EnemyTurnComposition>(entity);
             CreateComposition<EnemyDeathComposition>(entity);
 

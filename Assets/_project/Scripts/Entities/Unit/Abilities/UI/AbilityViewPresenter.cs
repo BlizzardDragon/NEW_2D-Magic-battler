@@ -1,7 +1,6 @@
 using _project.Scripts.Core.UI.Abilities;
 using _project.Scripts.Entities.Unit.Abilities.Configs;
 using _project.Scripts.Entities.Unit.Abilities.Network;
-using UnityEngine;
 
 namespace _project.Scripts.Entities.Unit.Abilities.UI
 {
@@ -37,8 +36,6 @@ namespace _project.Scripts.Entities.Unit.Abilities.UI
             _view.Button.onClick.RemoveListener(OnButtonClicked);
             _networkAbilitiesAdapter.ServerUpdatedAbilityCooldown -= UpdateCooldown;
             _networkAbilitiesAdapter.ServerUpdatedAbilityEnable -= UpdateEnable;
-
-            Object.Destroy(_view.gameObject);
         }
 
         private void OnButtonClicked()
