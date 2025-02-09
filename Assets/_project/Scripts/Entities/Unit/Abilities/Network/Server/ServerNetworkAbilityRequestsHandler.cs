@@ -18,17 +18,17 @@ namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
 
         public void OnEnable()
         {
-            _networkAbilitiesAdapter.ClientRequestedAbilityUse += OnClientRequestedAbilityUse;
-            _networkAbilitiesAdapter.ClientRequestedUpdateAbilityState += UpdateAbilityState;
+            _networkAbilitiesAdapter.ClientUseAbilityRequested += OnClientUseAbilityRequested;
+            _networkAbilitiesAdapter.ClientAbilityStateUpdateRequested += UpdateAbilityState;
         }
 
         public void OnDisable()
         {
-            _networkAbilitiesAdapter.ClientRequestedAbilityUse -= OnClientRequestedAbilityUse;
-            _networkAbilitiesAdapter.ClientRequestedUpdateAbilityState -= UpdateAbilityState;
+            _networkAbilitiesAdapter.ClientUseAbilityRequested -= OnClientUseAbilityRequested;
+            _networkAbilitiesAdapter.ClientAbilityStateUpdateRequested -= UpdateAbilityState;
         }
 
-        private void OnClientRequestedAbilityUse(AbilityType type)
+        private void OnClientUseAbilityRequested(AbilityType type)
         {
             var ability = _abilityManager.GetAbility(type);
 

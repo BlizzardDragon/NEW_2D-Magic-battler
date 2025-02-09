@@ -21,6 +21,7 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
 
             if (entity.Presence.OnServer())
             {
+                CreateComposition<ServerUnitHealthComposition>(entity);
                 CreateComposition<ServerUnitTargetComposition>(entity);
                 CreateComposition<ServerUnitAbilityComposition>(entity);
                 CreateComposition<ServerUnitTakeDamageComposition>(entity);

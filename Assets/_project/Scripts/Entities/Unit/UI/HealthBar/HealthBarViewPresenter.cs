@@ -1,33 +1,34 @@
-using _project.Scripts.Entities.Health;
+using _project.Scripts.Entities.Unit.Network.Health;
 
 namespace _project.Scripts.Entities.Unit.UI.HealthBar
 {
     public class HealthBarViewPresenter
     {
-        private readonly IHealth _model;
+        private readonly INetworkHealthAdapter _networkHealthAdapter;
         private readonly HealthBarView _view;
 
-        public HealthBarViewPresenter(IHealth model, HealthBarView view)
+        public HealthBarViewPresenter(INetworkHealthAdapter networkHealthAdapter, HealthBarView view)
         {
-            _model = model;
+            _networkHealthAdapter = networkHealthAdapter;
             _view = view;
         }
 
         public void OnEnable()
         {
-            UpdateHealthBar();
-            _model.HealthChanged += UpdateHealthBar;
+            _networkHealthAdapter.ServerHealthUpdated += UpdateHealthBar;
+
+            _networkHealthAdapter.HealthUpdateRequest_Client();
         }
 
         public void OnDisable()
         {
-            _model.HealthChanged -= UpdateHealthBar;
+            _networkHealthAdapter.ServerHealthUpdated -= UpdateHealthBar;
         }
 
-        private void UpdateHealthBar()
+        private void UpdateHealthBar(HealthData data)
         {
-            _view.RenderHealth(_model.CurrentHealth >= 0 ? _model.CurrentHealth.ToString() : "0");
-            _view.RenderFillAmount((float) _model.CurrentHealth / _model.MaxHealth);
+            _view.RenderHealth(data.CurrentHealth >= 0 ? data.CurrentHealth.ToString() : "0");
+            _view.RenderFillAmount((float) data.CurrentHealth / data.MaxHealth);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace _project.Scripts.Entities.Unit
         [field: SerializeField] public HealthBarView HealthBarView { get; private set; }
         [field: SerializeField] public Transform StatusBarContent { get; private set; }
         [field: SerializeField] public AbilitiesProvider AbilitiesProvider { get; private set; }
-        [field: SerializeField] public UnitUIConfig UnitUIConfig { get; private set; }
+        [field: SerializeField] public UnitConfig UnitConfig { get; private set; }
+        [field: SerializeField] public UnitUIConfig UIConfig { get; private set; }
     }
 }
