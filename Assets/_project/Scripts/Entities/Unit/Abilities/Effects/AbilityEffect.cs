@@ -11,10 +11,11 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
             Config = config;
         }
 
+        public AbilityEffectType Type => Config.Type;
         public int Duration { get; protected set; }
         public AbilityEffectConfig Config { get; }
 
-        public event Action DurationUpdated;
+        public event Action<AbilityEffect> DurationUpdated;
         public event Action<AbilityEffect> EffectEnded;
 
         public void Tick()
@@ -22,7 +23,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
             if (Duration <= 0) return;
 
             Duration--;
-            DurationUpdated?.Invoke();
+            DurationUpdated?.Invoke(this);
 
             OnTick();
 
@@ -35,7 +36,7 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
         public void StopEffect()
         {
             Duration = 0;
-            DurationUpdated?.Invoke();
+            DurationUpdated?.Invoke(this);
             EffectEnded?.Invoke(this);
         }
 

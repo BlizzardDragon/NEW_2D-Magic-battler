@@ -6,6 +6,8 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
 {
     public interface IAbilityEffectsManager
     {
+        IReadOnlyList<AbilityEffect> Effects { get; }
+
         event Action<AbilityEffect> EffectAdded;
         event Action<AbilityEffect> EffectEnded;
 
@@ -19,6 +21,8 @@ namespace _project.Scripts.Entities.Unit.Abilities.Effects
     public class AbilityEffectsManager : IAbilityEffectsManager
     {
         private readonly List<AbilityEffect> _effects = new();
+
+        public IReadOnlyList<AbilityEffect> Effects => _effects;
 
         public event Action<AbilityEffect> EffectAdded;
         public event Action<AbilityEffect> EffectEnded;

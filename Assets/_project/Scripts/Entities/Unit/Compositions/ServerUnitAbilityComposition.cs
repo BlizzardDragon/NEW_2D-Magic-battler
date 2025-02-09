@@ -2,12 +2,15 @@ using _project.Scripts.Entities.Health;
 using _project.Scripts.Entities.Unit.Abilities;
 using _project.Scripts.Entities.Unit.Abilities.Configs;
 using _project.Scripts.Entities.Unit.Abilities.Effects;
+using _project.Scripts.Entities.Unit.Abilities.Effects.Network;
 using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Compositions
 {
     public class ServerUnitAbilityComposition : EntityModuleCompositionBase
     {
+        private ServerAbilityEffectsSyncHandler _serverAbilityEffectsSyncHandler;
+
         public override void Create(IEntity entity)
         {
             var unitMono = entity.GetModule<UnitMono>();
@@ -19,6 +22,10 @@ namespace _project.Scripts.Entities.Unit.Compositions
             var abilityManager = new AbilityManager();
             var effectsManager = new AbilityEffectsManager();
 
+            var networkAbilityEffectAdapter = new NetworkAbilityEffectAdapter();
+            _serverAbilityEffectsSyncHandler = new ServerAbilityEffectsSyncHandler(
+                networkAbilityEffectAdapter, effectsManager);
+
             AbilityFactoryRegistration(abilityFactory, targetService, health, effectsManager);
 
             foreach (var abilityConfig in abilityConfigs)
@@ -28,6 +35,7 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
             entity.AddModule<IAbilityEffectsManager>(effectsManager);
             entity.AddModule<IAbilityManager>(abilityManager);
+            entity.AddModule<INetworkAbilityEffectAdapter>(networkAbilityEffectAdapter);
         }
 
         private static void AbilityFactoryRegistration(
@@ -55,6 +63,16 @@ namespace _project.Scripts.Entities.Unit.Compositions
             abilityFactory.Register(
                 AbilityType.Regeneration,
                 config => new RegenerationAbility(health, effectsManager, (RegenerationAbilityConfig) config));
+        }
+
+        public override void Initialize()
+        {
+            _serverAbilityEffectsSyncHandler.OnEnable();
+        }
+
+        protected override void OnBeforeDestroy()
+        {
+            _serverAbilityEffectsSyncHandler.OnDisable();
         }
     }
 }

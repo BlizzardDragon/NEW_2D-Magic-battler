@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355c10e06eda475cacd61b7eb8114f40, type: 3}
   m_Name: RegenerationEffectConfig
   m_EditorClassIdentifier: 
+  <Type>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: 21300000, guid: c3aab7237df394c4890e647a4ae580ea, type: 3}
   <Duration>k__BackingField: 3
   <RegenerationPower>k__BackingField: 2

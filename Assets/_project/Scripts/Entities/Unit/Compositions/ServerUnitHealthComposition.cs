@@ -7,7 +7,7 @@ namespace _project.Scripts.Entities.Unit.Compositions
 {
     public class ServerUnitHealthComposition : EntityModuleCompositionBase
     {
-        private ServerHealthEventHandler _healthEventHandler;
+        private ServerHealthSyncHandler _healthSyncHandler;
         
         public override void Create(IEntity entity)
         {
@@ -15,7 +15,7 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
             var health = new EntityHealth(unitMono.UnitConfig.StartHealth);
             var networkHealthAdapter = new NetworkHealthAdapter();
-            _healthEventHandler = new ServerHealthEventHandler(health, networkHealthAdapter);
+            _healthSyncHandler = new ServerHealthSyncHandler(health, networkHealthAdapter);
 
             entity.AddModule<IHealth>(health);
             entity.AddModule<INetworkHealthAdapter>(networkHealthAdapter);
@@ -23,12 +23,12 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
         public override void Initialize()
         {
-            _healthEventHandler.OnEnable();
+            _healthSyncHandler.OnEnable();
         }
 
         protected override void OnBeforeDestroy()
         {
-            _healthEventHandler.OnDisable();
+            _healthSyncHandler.OnDisable();
         }
     }
 }

@@ -2,12 +2,12 @@ using _project.Scripts.Entities.Health;
 
 namespace _project.Scripts.Entities.Unit.Network.Health
 {
-    public class ServerHealthEventHandler
+    public class ServerHealthSyncHandler
     {
         private readonly IHealth _health;
         private readonly INetworkHealthAdapter _networkHealthAdapter;
 
-        public ServerHealthEventHandler(IHealth health, INetworkHealthAdapter networkHealthAdapter)
+        public ServerHealthSyncHandler(IHealth health, INetworkHealthAdapter networkHealthAdapter)
         {
             _health = health;
             _networkHealthAdapter = networkHealthAdapter;

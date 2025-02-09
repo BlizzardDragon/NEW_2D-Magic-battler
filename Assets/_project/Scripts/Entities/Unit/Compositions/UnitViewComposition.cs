@@ -1,5 +1,4 @@
-using _project.Scripts.Entities.Unit.Abilities.Effects;
-using _project.Scripts.Entities.Unit.Network;
+using _project.Scripts.Entities.Unit.Abilities.Effects.Network;
 using _project.Scripts.Entities.Unit.Network.Health;
 using _project.Scripts.Entities.Unit.UI.AbilityEffects;
 using _project.Scripts.Entities.Unit.UI.HealthBar;
@@ -16,14 +15,15 @@ namespace _project.Scripts.Entities.Unit.Compositions
         {
             var unitMono = entity.GetModule<UnitMono>();
             var networkHealthAdapter = entity.GetModule<INetworkHealthAdapter>();
-            var abilityEffectsManager = entity.GetModule<IAbilityEffectsManager>();
+            var networkAbilityEffectAdapter = entity.GetModule<INetworkAbilityEffectAdapter>();
 
             _healthBarViewPresenter = new HealthBarViewPresenter(networkHealthAdapter, unitMono.HealthBarView);
 
             var abilityEffectViewFactory = new AbilityEffectViewFactory(
                 unitMono.StatusBarContent, unitMono.UIConfig);
 
-            _abilityEffectsPresenter = new AbilityEffectsPresenter(abilityEffectsManager, abilityEffectViewFactory);
+            _abilityEffectsPresenter = new AbilityEffectsPresenter(
+                networkAbilityEffectAdapter, abilityEffectViewFactory, unitMono.AbilityEffectsProvider);
         }
 
         public override void Initialize()

@@ -812,6 +812,7 @@ MonoBehaviour:
   <HealthBarView>k__BackingField: {fileID: 4117794911548161351}
   <StatusBarContent>k__BackingField: {fileID: 1542942513320085707}
   <AbilitiesProvider>k__BackingField: {fileID: 11400000, guid: 86b8c35cac5a40e4ea98248b66dcee3c, type: 2}
+  <AbilityEffectsProvider>k__BackingField: {fileID: 11400000, guid: 781ede7bc89e51f4f8129e49a6947272, type: 2}
   <UnitConfig>k__BackingField: {fileID: 11400000, guid: f0a1b202b5a941a49ac59677412aadcc, type: 2}
   <UIConfig>k__BackingField: {fileID: 11400000, guid: 1ad9f6f9b16d80442ad528e4c165c4d1, type: 2}
 --- !u!1 &8770726614780225232
