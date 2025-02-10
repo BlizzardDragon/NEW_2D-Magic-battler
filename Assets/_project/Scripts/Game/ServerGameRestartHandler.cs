@@ -26,6 +26,8 @@ namespace _project.Scripts.Game
 
         private void Restart()
         {
+            if (NetworkManager.Instance.IsHost) return;
+
             _sceneLoader.RestartAsync().Forget();
         }
     }
