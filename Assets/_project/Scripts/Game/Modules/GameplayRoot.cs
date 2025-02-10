@@ -1,4 +1,5 @@
-using _project.Scripts.Core.Turn;
+using _project.Scripts.Core;
+using _project.Scripts.Game.Compositions;
 using Cysharp.Threading.Tasks;
 using Entity.Core;
 using UnityEngine;
@@ -11,29 +12,15 @@ namespace _project.Scripts.Game.Modules
         [SerializeField] private MonoEntity _player;
         [SerializeField] private MonoEntity _enemy;
 
-        private TurnPipelineRunner _pipelineRunner;
-
         public override async UniTask InstallBindings()
         {
-            var turnPipeline = Get<ITurnPipeline>();
+            BindAsLocal<MonoEntitiesData>(new MonoEntitiesData(_player, _enemy));
 
-            _pipelineRunner = new TurnPipelineRunner(turnPipeline, _player, _enemy);
-
-            BindAsLocal<ITurnPipelineRunner>(_pipelineRunner);
-        }
-
-        public override async UniTask Initialize()
-        {
-            _pipelineRunner.OnEnable();
-
-            await UniTask.WaitUntil(() => _player.IsInitialized && _enemy.IsInitialized);
-
-            _pipelineRunner.Run();
-        }
-
-        public override void OnBeforeDestroyed()
-        {
-            _pipelineRunner.OnDisable();
+            if (NetworkManager.Instance.OnServer)
+            {
+                CreateComposition<ServerGameTurnPipelineComposition>();
+                CreateComposition<ServerGameRestartComposition>();
+            }
         }
     }
 }

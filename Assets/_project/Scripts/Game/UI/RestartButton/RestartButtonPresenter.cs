@@ -5,12 +5,17 @@ namespace _project.Scripts.Game.UI.RestartButton
 {
     public class RestartButtonPresenter
     {
-        private readonly ISceneLoader _model;
+        private readonly ISceneLoader _sceneLoader;
+        private readonly INetworkGameRestartAdapter _networkGameRestartAdapter;
         private readonly RestartButtonView _view;
 
-        public RestartButtonPresenter(ISceneLoader model, RestartButtonView view)
+        public RestartButtonPresenter(
+            ISceneLoader sceneLoader,
+            INetworkGameRestartAdapter networkGameRestartAdapter,
+            RestartButtonView view)
         {
-            _model = model;
+            _sceneLoader = sceneLoader;
+            _networkGameRestartAdapter = networkGameRestartAdapter;
             _view = view;
         }
 
@@ -26,7 +31,8 @@ namespace _project.Scripts.Game.UI.RestartButton
 
         private void OnButtonClicked()
         {
-            _model.RestartAsync().Forget();
+            _networkGameRestartAdapter.RestartRequest_Client();
+            _sceneLoader.RestartAsync().Forget();
         }
     }
 }

@@ -1,3 +1,4 @@
+using _project.Scripts.Core;
 using _project.Scripts.Game.Compositions;
 using _project.Scripts.Game.UI.GameOver;
 using _project.Scripts.Game.UI.RestartButton;
@@ -14,10 +15,13 @@ namespace _project.Scripts.Game.Modules
 
         public override async UniTask InstallBindings()
         {
-            BindAsLocal<GameOverView>(_gameOverView);
-            BindAsLocal<RestartButtonView>(_restartButtonView);
+            if (NetworkManager.Instance.IsRemote)
+            {
+                BindAsLocal<GameOverView>(_gameOverView);
+                BindAsLocal<RestartButtonView>(_restartButtonView);
 
-            CreateComposition<GameUIComposition>();
+                CreateComposition<ClientGameUIComposition>();
+            }
         }
     }
 }

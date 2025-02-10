@@ -7,7 +7,7 @@ using VampireSquid.Common.CompositeRoot;
 
 namespace _project.Scripts.Game.Compositions
 {
-    public class GameUIComposition : CompositionBase
+    public class ClientGameUIComposition : CompositionBase
     {
         private RestartButtonPresenter _restartButtonPresenter;
 
@@ -15,10 +15,12 @@ namespace _project.Scripts.Game.Compositions
         {
             var gameOverView = GetLocal<GameOverView>();
             var restartButtonView = GetLocal<RestartButtonView>();
+            var networkGameRestartAdapter = GetLocal<INetworkGameRestartAdapter>();
             var sceneLoader = GetGlobal<ISceneLoader>();
 
             var gameOverViewPresenter = new GameOverViewPresenter(gameOverView);
-            _restartButtonPresenter = new RestartButtonPresenter(sceneLoader, restartButtonView);
+            _restartButtonPresenter = new RestartButtonPresenter(
+                sceneLoader, networkGameRestartAdapter, restartButtonView);
 
             CommandHandler.Instance.AddListener(gameOverViewPresenter);
         }
