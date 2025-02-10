@@ -7,29 +7,29 @@ namespace _project.Scripts.Entities.Unit.Player.Compositions
 {
     public class ServerPlayerAbilityComposition : EntityModuleCompositionBase
     {
-        private ServerAbilitiesSyncManager _syncManager;
-        private ServerNetworkAbilityRequestsHandler _requestsHandler;
+        private ServerAbilitiesSyncController _syncController;
+        private ServerAbilityRequestsHandler _requestsHandler;
 
         public override void Create(IEntity entity)
         {
             var networkAbilitiesAdapter = entity.GetModule<INetworkAbilitiesAdapter>();
             var abilityManager = entity.GetModule<IAbilityManager>();
 
-            var sender = new ServerToClientAbilityStateSender(networkAbilitiesAdapter);
-            _syncManager = new ServerAbilitiesSyncManager(sender, abilityManager);
-            _requestsHandler = new ServerNetworkAbilityRequestsHandler(
+            var sender = new ServerAbilityStateSender(networkAbilitiesAdapter);
+            _syncController = new ServerAbilitiesSyncController(sender, abilityManager);
+            _requestsHandler = new ServerAbilityRequestsHandler(
                 networkAbilitiesAdapter, sender, abilityManager);
         }
 
         public override void Initialize()
         {
-            _syncManager.OnEnable();
+            _syncController.OnEnable();
             _requestsHandler.OnEnable();
         }
 
         protected override void OnBeforeDestroy()
         {
-            _syncManager.OnDisable();
+            _syncController.OnDisable();
             _requestsHandler.OnDisable();
         }
     }

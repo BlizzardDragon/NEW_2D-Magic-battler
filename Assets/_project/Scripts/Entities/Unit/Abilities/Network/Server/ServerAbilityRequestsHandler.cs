@@ -1,14 +1,14 @@
 namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
 {
-    public class ServerNetworkAbilityRequestsHandler
+    public class ServerAbilityRequestsHandler
     {
         private readonly INetworkAbilitiesAdapter _networkAbilitiesAdapter;
-        private readonly IServerToClientAbilityStateSender _sender;
+        private readonly IServerAbilityStateSender _sender;
         private readonly IAbilityManager _abilityManager;
 
-        public ServerNetworkAbilityRequestsHandler(
+        public ServerAbilityRequestsHandler(
             INetworkAbilitiesAdapter networkAbilitiesAdapter,
-            IServerToClientAbilityStateSender sender,
+            IServerAbilityStateSender sender,
             IAbilityManager abilityManager)
         {
             _networkAbilitiesAdapter = networkAbilitiesAdapter;

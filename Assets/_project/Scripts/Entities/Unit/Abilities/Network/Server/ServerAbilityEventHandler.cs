@@ -3,11 +3,11 @@ namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
     public class ServerAbilityEventHandler
     {
         private readonly Ability _ability;
-        private readonly IServerToClientAbilityStateSender _sender;
+        private readonly IServerAbilityStateSender _sender;
 
         public ServerAbilityEventHandler(
             Ability ability,
-            IServerToClientAbilityStateSender sender)
+            IServerAbilityStateSender sender)
         {
             _ability = ability;
             _sender = sender;

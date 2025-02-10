@@ -1,16 +1,16 @@
 namespace _project.Scripts.Entities.Unit.Abilities.Network.Server
 {
-    public interface IServerToClientAbilityStateSender
+    public interface IServerAbilityStateSender
     {
         void SendAbilityStateToClient(Ability ability);
         void SendAbilityEnableToClient(Ability ability, bool isEnable);
     }
 
-    public class ServerToClientAbilityStateSender : IServerToClientAbilityStateSender
+    public class ServerAbilityStateSender : IServerAbilityStateSender
     {
         private readonly INetworkAbilitiesAdapter _networkAbilitiesAdapter;
 
-        public ServerToClientAbilityStateSender(INetworkAbilitiesAdapter networkAbilitiesAdapter)
+        public ServerAbilityStateSender(INetworkAbilitiesAdapter networkAbilitiesAdapter)
         {
             _networkAbilitiesAdapter = networkAbilitiesAdapter;
         }
