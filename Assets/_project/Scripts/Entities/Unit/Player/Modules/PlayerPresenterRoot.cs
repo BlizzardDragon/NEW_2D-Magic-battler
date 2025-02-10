@@ -17,6 +17,7 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
             entity.AddModule<UnitMono>(_unitMono);
             entity.AddModule<PlayerUIConfig>(_uiConfig);
 
+            CreateComposition<UnitNetworkComposition>(entity);
             CreateComposition<PlayerNetworkComposition>(entity);
 
             if (entity.Presence.OnServer())
@@ -34,7 +35,7 @@ namespace _project.Scripts.Entities.Unit.Player.Modules
 
             if (entity.Presence.IsRemote())
             {
-                CreateComposition<UnitViewComposition>(entity);
+                CreateComposition<ClientUnitViewComposition>(entity);
                 CreateComposition<ClientPlayerAbilityHUDComposition>(entity);
             }
         }

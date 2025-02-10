@@ -5,7 +5,7 @@ using Entity.Core;
 
 namespace _project.Scripts.Entities.Unit.Enemy.Compositions
 {
-    public class EnemyTurnComposition : EntityModuleCompositionBase
+    public class ServerEnemyTurnComposition : EntityModuleCompositionBase
     {
         private EnemyUnitAI _ai;
         private EnemyTurnTask _task;

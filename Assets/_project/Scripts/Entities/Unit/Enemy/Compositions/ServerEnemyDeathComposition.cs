@@ -4,7 +4,7 @@ using VampireSquid.Common.Commands.Handlers;
 
 namespace _project.Scripts.Entities.Unit.Enemy.Compositions
 {
-    public class EnemyDeathComposition : EntityModuleCompositionBase
+    public class ServerEnemyDeathComposition : EntityModuleCompositionBase
     {
         private EnemyDeathPresenter _deathPresenter;
 

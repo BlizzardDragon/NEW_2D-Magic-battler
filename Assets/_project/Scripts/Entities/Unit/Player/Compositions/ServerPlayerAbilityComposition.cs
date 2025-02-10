@@ -19,8 +19,6 @@ namespace _project.Scripts.Entities.Unit.Player.Compositions
             _syncManager = new ServerAbilitiesSyncManager(sender, abilityManager);
             _requestsHandler = new ServerNetworkAbilityRequestsHandler(
                 networkAbilitiesAdapter, sender, abilityManager);
-            
-            
         }
 
         public override void Initialize()

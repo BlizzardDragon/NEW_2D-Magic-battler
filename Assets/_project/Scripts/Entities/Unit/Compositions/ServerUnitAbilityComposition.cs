@@ -16,13 +16,13 @@ namespace _project.Scripts.Entities.Unit.Compositions
             var unitMono = entity.GetModule<UnitMono>();
             var health = entity.GetModule<IHealth>();
             var targetService = entity.GetModule<IEntityTargetService>();
+            var networkAbilityEffectAdapter = entity.GetModule<INetworkAbilityEffectAdapter>();
             var abilityConfigs = unitMono.AbilitiesProvider.AbilityConfigs;
 
             var abilityFactory = new AbilityFactory();
             var abilityManager = new AbilityManager();
             var effectsManager = new AbilityEffectsManager();
 
-            var networkAbilityEffectAdapter = new NetworkAbilityEffectAdapter();
             _serverAbilityEffectsSyncHandler = new ServerAbilityEffectsSyncHandler(
                 networkAbilityEffectAdapter, effectsManager);
 
@@ -35,7 +35,6 @@ namespace _project.Scripts.Entities.Unit.Compositions
 
             entity.AddModule<IAbilityEffectsManager>(effectsManager);
             entity.AddModule<IAbilityManager>(abilityManager);
-            entity.AddModule<INetworkAbilityEffectAdapter>(networkAbilityEffectAdapter);
         }
 
         private static void AbilityFactoryRegistration(
