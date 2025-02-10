@@ -6,7 +6,7 @@ namespace _project.Scripts.Entities.Unit.Abilities
 {
     public abstract class Ability
     {
-        private bool _isEnable = true;
+        private bool _isEnable;
 
         protected Ability(AbilityConfig config)
         {

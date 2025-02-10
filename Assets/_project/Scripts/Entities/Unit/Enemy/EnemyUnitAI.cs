@@ -27,6 +27,8 @@ namespace _project.Scripts.Entities.Unit.Enemy
             _abilityManager = abilityManager;
 
             _cts = new CancellationTokenSource();
+            
+            _abilityManager.EnableAbilities(true);
         }
 
         public async UniTask UseRandomAbility(Action callback)
